@@ -142,7 +142,7 @@ export default {
           }, 200)
           img = null
         }
-        img.src = bg
+        // img.src = bg
       } catch (error) {
         this.landingBG = this.staticLandingBG
       }
@@ -298,7 +298,7 @@ export default {
     max-width: 100vw;
     height: 100vh;
     border-radius: 0;
-    background-position: center top;
+    background-position: center center;
     background-size: cover;
     filter: none;
 
