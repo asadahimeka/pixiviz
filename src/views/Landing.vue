@@ -142,7 +142,7 @@ export default {
           }, 200)
           img = null
         }
-        // img.src = bg
+        img.src = bg
       } catch (error) {
         this.landingBG = this.staticLandingBG
       }
