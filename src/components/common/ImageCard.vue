@@ -115,7 +115,8 @@ export default {
     return {
       loading: false,
       loadError: false,
-      block: this.image.x_strict ? true : this.image.sanity_level > 5,
+      // block: this.image.x_strict ? true : this.image.sanity_level > 5,
+      block: !!this.image.x_restrict,
       moreMenuVisible: false,
     };
   },

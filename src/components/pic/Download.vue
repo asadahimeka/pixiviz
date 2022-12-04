@@ -180,17 +180,17 @@ export default {
   watch: {
     '$store.state.pic.progress': function(value) {
       if (this.$store.state.darkMode.enabled) {
-        this.downloadCurrentStyle = `background-image: linear-gradient(to right, #d7707c 0%, #d7707c ${value}%, #999 ${value}%, #999 100%) !important;`;
+        this.downloadCurrentStyle = `background-image: linear-gradient(to right, #8F77B5 0%, #8F77B5 ${value}%, #999 ${value}%, #999 100%) !important;`;
       } else {
-        this.downloadCurrentStyle = `background-image: linear-gradient(to right, #da7a85 0%, #da7a85 ${value}%, #999 ${value}%, #999 100%) !important;`;
+        this.downloadCurrentStyle = `background-image: linear-gradient(to right, #8F77B5 0%, #8F77B5 ${value}%, #999 ${value}%, #999 100%) !important;`;
       }
       this.$forceUpdate();
     },
     '$store.state.pic.ugoiraProgress': function(value) {
       if (this.$store.state.darkMode.enabled) {
-        this.downloadUgoiraStyle = `background-image: linear-gradient(to right, #d7707c 0%, #d7707c ${value}%, #999 ${value}%, #999 100%) !important;`;
+        this.downloadUgoiraStyle = `background-image: linear-gradient(to right, #8F77B5 0%, #8F77B5 ${value}%, #999 ${value}%, #999 100%) !important;`;
       } else {
-        this.downloadUgoiraStyle = `background-image: linear-gradient(to right, #da7a85 0%, #da7a85 ${value}%, #999 ${value}%, #999 100%) !important;`;
+        this.downloadUgoiraStyle = `background-image: linear-gradient(to right, #8F77B5 0%, #8F77B5 ${value}%, #999 ${value}%, #999 100%) !important;`;
       }
       this.$forceUpdate();
     },

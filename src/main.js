@@ -8,7 +8,7 @@ import VueLazyload from 'vue-lazyload';
 import Vue2TouchEvents from 'vue2-touch-events';
 import VueContextMenu from 'vue-context-menu';
 import InfiniteLoading from 'vue-infinite-loading';
-import { sha256 } from 'hash-wasm';
+// import { sha256 } from 'hash-wasm';
 
 // Import config
 import config from './config.json';
@@ -33,7 +33,7 @@ import router from './router';
 import axios, { wrapAxios } from './util/axios';
 
 // Import utils
-import { getCachedConfig, setCacheConfig } from './util/config';
+import { getCachedConfig/* , setCacheConfig */ } from './util/config';
 import { getOgTags } from './util/og';
 import {
   defineProxyHosts,
@@ -50,7 +50,7 @@ import './registerServiceWorker';
 // Import pixland
 import pixlandIns from './util/pixland';
 
-import { initBaiduStat } from './util/statistics';
+// import { initBaiduStat } from './util/statistics';
 import { checkTrustHost } from './util/host';
 import { getSensitiveWords } from './util/sensitiveWords';
 
@@ -172,37 +172,37 @@ try {
   disabledProxyHost = [];
 }
 
-const requestRemoteConfig = async () => {
-  let res;
-  try {
-    res = await axios.get(config.remote_conf_url, {
-      params: {
-        t: Date.now(),
-      },
-      timeout: 5000,
-    });
-  } catch (err) {
-    console.error('Failed to fetch remote configuration.', err);
-    return;
-  }
-  const remoteConfig = res?.data;
-  if (remoteConfig) {
-    setCacheConfig(remoteConfig);
-    Object.assign(config, remoteConfig);
-  }
-  if (typeof config.image_proxy_host === 'object') {
-    defineProxyHosts(config.image_proxy_host, disabledProxyHost);
-  }
-  if (typeof config.download_proxy_host === 'object') {
-    defineProxyHosts(config.download_proxy_host, disabledProxyHost);
-  }
-  // choose an API prefix
-  defineApiPrefix(config, disabledApiHost);
-  // add config to window
-  window.pixiviz.config = config || {};
-  // define a flag
-  window.pixiviz.config.IS_REMOTE_CONFIG = true;
-};
+// const requestRemoteConfig = async () => {
+//   let res;
+//   try {
+//     res = await axios.get(config.remote_conf_url, {
+//       params: {
+//         t: Date.now(),
+//       },
+//       timeout: 5000,
+//     });
+//   } catch (err) {
+//     console.error('Failed to fetch remote configuration.', err);
+//     return;
+//   }
+//   const remoteConfig = res?.data;
+//   if (remoteConfig) {
+//     setCacheConfig(remoteConfig);
+//     Object.assign(config, remoteConfig);
+//   }
+//   if (typeof config.image_proxy_host === 'object') {
+//     defineProxyHosts(config.image_proxy_host, disabledProxyHost);
+//   }
+//   if (typeof config.download_proxy_host === 'object') {
+//     defineProxyHosts(config.download_proxy_host, disabledProxyHost);
+//   }
+//   // choose an API prefix
+//   defineApiPrefix(config, disabledApiHost);
+//   // add config to window
+//   window.pixiviz.config = config || {};
+//   // define a flag
+//   window.pixiviz.config.IS_REMOTE_CONFIG = true;
+// };
 
 const createInstance = () => {
   new Vue({
@@ -228,17 +228,17 @@ const execute = async () => {
   if (!checkTrustHost(config)) {
     return;
   }
-  try {
-    await requestRemoteConfig();
-    bus.$emit('remote-config-fetched');
-    // compute hash
-    const hash = await sha256(JSON.stringify(config));
-    console.debug(`%cConfig hash: ${hash}`, 'color:#da7a85');
-    console.debug(`%cConfig content: `, 'color:#da7a85', JSON.stringify(config));
-    window.localStorage.setItem('remote_conf_hash', hash);
-  } catch (e) {
-    console.error('Request remote config error.', e);
-  }
+  // try {
+  //   await requestRemoteConfig();
+  //   bus.$emit('remote-config-fetched');
+  //   // compute hash
+  //   const hash = await sha256(JSON.stringify(config));
+  //   console.debug(`%cConfig hash: ${hash}`, 'color:#8F77B5');
+  //   console.debug(`%cConfig content: `, 'color:#8F77B5', JSON.stringify(config));
+  //   window.localStorage.setItem('remote_conf_hash', hash);
+  // } catch (e) {
+  //   console.error('Request remote config error.', e);
+  // }
   // check api host alive
   try {
     checkAPIHostAlive(config);
@@ -249,12 +249,12 @@ const execute = async () => {
 };
 
 // init stat
-try {
-  if (checkTrustHost(config)) {
-    initBaiduStat();
-  }
-} catch (err) {
-  console.error('Failed to init statistics script.', err);
-}
+// try {
+//   if (checkTrustHost(config)) {
+//     initBaiduStat();
+//   }
+// } catch (err) {
+//   console.error('Failed to init statistics script.', err);
+// }
 
 execute();

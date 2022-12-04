@@ -11,6 +11,9 @@
     <div class="banner">
       <div :class="['banner-title', titleUp ? 'banner-title-up' : '']">
         <span>Pixiviz</span>
+        <span>
+          <sup style="font-size: 0.4em;letter-spacing: 0;">Kai</sup>
+        </span>
       </div>
       <div :class="['about', aboutShow ? 'about-show' : '']" v-show="expanded">
         <div class="about-my">
@@ -22,10 +25,10 @@
               >浏览历史</a
             >
             <a href="javascript:;" @click="goCollection" @contextmenu.prevent>收藏夹</a>
-            <a href="javascript:;" @click="showAccountDialog" @contextmenu.prevent>帐号</a>
+            <!-- <a href="javascript:;" @click="showAccountDialog" @contextmenu.prevent>帐号</a> -->
           </div>
         </div>
-        <div class="about-settings">
+        <!-- <div class="about-settings">
           <div class="about-settings-title">
             <span>设置</span>
           </div>
@@ -41,22 +44,22 @@
               >隐私</a
             >
           </div>
-        </div>
+        </div> -->
         <div class="about-copyright">
           <div class="about-copyright-item">
             <span>Copyright &copy; 2022 pwp.app.</span>
           </div>
           <div class="about-copyright-item">
             <span>
-              <a href="https://pixiviz.pwp.app/sponsor" target="_blank">发电名录</a>
+              <!-- <a href="https://pixiviz.pwp.app/sponsor" target="_blank">发电名录</a>
               <span class="about-copyright-split">|</span>
               <a href="https://github.com/pwp-app/pixiviz/discussions" target="_blank">交流反馈</a>
-              <span class="about-copyright-split">|</span>
-              <a :href="`https://pixiviz.pwp.app/pic/${landingBgId}`" target="_blank">主页背景</a>
+              <span class="about-copyright-split">|</span> -->
+              <a @click="goToBgUrl">主页背景</a>
             </span>
           </div>
           <div class="about-copyright-item">
-            <span>v {{ appVer }}</span>
+            <span>v {{ appVer }} kai</span>
           </div>
           <div class="about-copyright-item" @click="goGitHub">
             <GitHubIcon />
@@ -80,7 +83,7 @@ import CommonLogin from '../common/CommonLogin.vue';
 import UserInfo from '../common/UserInfo.vue';
 import GitHubIcon from '../icons/github';
 
-const GITHUB_URL = 'https://github.com/pwp-app/pixiviz';
+const GITHUB_URL = 'https://github.com/asadahimeka/pixiviz';
 
 export default {
   name: 'Landing.Banner',
@@ -108,6 +111,10 @@ export default {
     this.$store.commit('landingBanner/setExpanded', false);
   },
   methods: {
+    goToBgUrl() {
+      const id = sessionStorage.getItem('__home-bg')?.match(/\/(\d+)_p\d+_master1200/)[1] || this.$config.landing_bg_id
+      window.open(`/pic/${id}`, '_blank')
+    },
     handleDblClick(e) {
       if (e.target.getAttribute('class') && e.target.getAttribute('class').includes('el-switch')) {
         return;

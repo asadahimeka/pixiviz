@@ -5,7 +5,7 @@
         <div class="collection-header-title__left">
           <span>收藏夹</span>
           <span class="count-limit">已用栏位 {{ existedCount }}/{{ COLLECTION_SIZE_LIMIT }}</span>
-          <SyncStatus v-if="syncStatus" :status="syncStatus" ref="syncStatus" @retry="retrySync" />
+          <!-- <SyncStatus v-if="syncStatus" :status="syncStatus" ref="syncStatus" @retry="retrySync" /> -->
         </div>
         <div class="collection-header-close">
           <i class="el-icon-close" @click="handleBack"></i>
@@ -57,7 +57,7 @@
 import cloneDeep from 'lodash-es/cloneDeep';
 import Waterfall from '../components/common/Waterfall';
 import BackToTop from '../components/common/BackToTop';
-import SyncStatus from '../components/common/SyncStatus.vue';
+// import SyncStatus from '../components/common/SyncStatus.vue';
 import MobileResponsive from '../util/MobileResponsive';
 import { getUserCollection, COLLECTION_SIZE_LIMIT, removeFromCollection } from '../util/collection';
 import { syncData } from '../util/pixland';
@@ -66,7 +66,7 @@ export default {
   components: {
     Waterfall,
     BackToTop,
-    SyncStatus,
+    // SyncStatus,
   },
   data() {
     return {

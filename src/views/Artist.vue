@@ -196,7 +196,7 @@ export default {
         return;
       }
       this.axios
-        .get(`${this.getApiPrefix()}/user/illusts`, {
+        .get(`${this.getApiPrefix()}/member_illust`, {
           params: {
             id: this.id,
             page: this.page,

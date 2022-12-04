@@ -251,7 +251,7 @@ export default {
     infiniteHandler($state) {
       this.cachedState = $state;
       this.axios
-        .get(`${this.$config.api_prefix}/illust/rank`, {
+        .get(`${this.$config.api_prefix}/rank`, {
           params: {
             mode: this.mode,
             date: this.date,

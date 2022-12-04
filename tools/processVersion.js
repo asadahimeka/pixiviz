@@ -21,7 +21,7 @@ export const version = '${packageInfo.version}';
 export const buildTime = '${buildTime}';
 console.log('%cPixiviz - v${packageInfo.version}\\nEnvironment - ${
     process.env.NODE_ENV === 'development' ? 'dev' : 'prod'
-  }\\nBuild time: ${buildTime}', 'color:#da7a85');
+  }\\nBuild time: ${buildTime}', 'color:#8F77B5');
 `.trim() + '\n';
 
 try {

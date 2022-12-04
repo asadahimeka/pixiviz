@@ -53,11 +53,9 @@
       <div class="pic-presentation-info-tags">
         <div class="pic-tag" v-for="tag in tags" :key="tag.id">
           <a
-            :href="`${$config.website_url}/search/${tag.name}`"
             :data-tag="tag.name"
             @click="handleTagClicked"
-            >#{{ tag.name }}</a
-          >
+            >#{{ tag.name }}</a>
         </div>
       </div>
       <div class="pic-presentation-info-stat">
@@ -119,7 +117,7 @@ import {
 } from '@/util/collection';
 import { syncData } from '@/util/pixland';
 
-const LARGE_SIZE_LIMIT = 3 * 1024 * 1024;
+// const LARGE_SIZE_LIMIT = 0.5 * 1024 * 1024;
 const BLANK_IMAGE =
   'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
@@ -439,21 +437,23 @@ export default {
       const img = new Image();
       img.onload = () => this.onLoaded(img);
       img.onerror = () => this.onLoadError();
-      const imgSize = await img.getSize(this.source);
-      if (imgSize > LARGE_SIZE_LIMIT) {
-        img.load(this.largeSource);
-        this.useLarge = true;
-      } else {
-        img.load(this.source);
-        // 清理之前的interval重新set
-        if (this.progressInterval) {
-          clearInterval(this.progressInterval);
-          this.progressInterval = null;
-        }
-        this.progressInterval = setInterval(() => {
-          this.progressCheck();
-        }, 200);
-      }
+      // const imgSize = await img.getSize(this.source);
+      // if (imgSize > LARGE_SIZE_LIMIT) {
+      //   img.load(this.largeSource);
+      //   this.useLarge = true;
+      // } else {
+      //   img.load(this.source);
+      //   // 清理之前的interval重新set
+      //   if (this.progressInterval) {
+      //     clearInterval(this.progressInterval);
+      //     this.progressInterval = null;
+      //   }
+      //   this.progressInterval = setInterval(() => {
+      //     this.progressCheck();
+      //   }, 200);
+      // }
+      img.load(this.largeSource);
+      this.useLarge = true;
       this.imageObjs[this.page] = img;
       this.imageObjs[this.page].useLarge = this.useLarge;
       // ugoira
@@ -465,7 +465,7 @@ export default {
       // get ugoira meta
       let metaRes;
       try {
-        metaRes = await this.axios.get(`${this.$config.api_prefix}/ugoira/meta`, {
+        metaRes = await this.axios.get(`${this.$config.api_prefix}/ugoira_metadata`, {
           params: {
             id: this.image.id,
           },

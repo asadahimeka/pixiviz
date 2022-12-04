@@ -120,7 +120,7 @@ export default {
       if (this.artist) {
         return this.artist.user.profile_image_urls.medium.replace(
           'i.pximg.net',
-          this.getImageProxyHost(),
+          'i.pixiv.re',
         );
       } else {
         return '';
@@ -169,7 +169,7 @@ export default {
         return;
       }
       this.axios
-        .get(`${this.getApiPrefix()}/user/detail`, {
+        .get(`${this.getApiPrefix()}/member`, {
           params: {
             id: this.artistId,
           },
@@ -202,9 +202,7 @@ export default {
       if (profile.is_using_custom_profile_image && profile.background_image_url) {
         this.headPicSource = profile.background_image_url.replace(
           'i.pximg.net',
-          typeof this.$config.image_proxy_host === 'string'
-            ? this.$config.image_proxy_host
-            : this.$config.image_proxy_host[0],
+          'i.pixiv.re'
         );
       }
       const { user } = this.artist;

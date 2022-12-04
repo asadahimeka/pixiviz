@@ -1,11 +1,11 @@
 <template>
   <div class="landing-container">
     <div class="landing" v-lazy:background-image="landingBG">
-      <div class="landing-content">
+      <!-- <div class="landing-content">
         <BannerPlaceholder class="landing-card" ref="bannerPlaceholder" />
         <SearchPlaceholder class="landing-card" />
         <RankPlaceholder class="landing-card" />
-      </div>
+      </div> -->
       <div class="landing-real-content">
         <Banner class="landing-card" @expanded="handleExpanded" />
         <SearchBox class="landing-card" />
@@ -31,9 +31,9 @@ import Banner from '../components/landing/Banner';
 import SearchBox from '../components/landing/SearchBox';
 import RankBox from '../components/landing/RankBox';
 // placeholder
-import BannerPlaceholder from '../components/landing/BannerPlaceholder';
-import SearchPlaceholder from '../components/landing/SearchBoxPlaceholder';
-import RankPlaceholder from '../components/landing/RankBoxPlaceholder';
+// import BannerPlaceholder from '../components/landing/BannerPlaceholder';
+// import SearchPlaceholder from '../components/landing/SearchBoxPlaceholder';
+// import RankPlaceholder from '../components/landing/RankBoxPlaceholder';
 // utils
 import { checkTrustHost } from '../util/host';
 
@@ -46,13 +46,14 @@ export default {
     Banner,
     SearchBox,
     RankBox,
-    BannerPlaceholder,
-    SearchPlaceholder,
-    RankPlaceholder,
+    // BannerPlaceholder,
+    // SearchPlaceholder,
+    // RankPlaceholder,
   },
   data() {
     return {
-      landingBG: require(`@/assets/images/landing${window.isSafari ? '.jpg' : '.webp'}`),
+      staticLandingBG: require(`@/assets/images/landing${window.isSafari ? '.jpg' : '.webp'}`),
+      landingBG: '',
       guideNotice: null,
       notFirstUse: false,
       announceId: -1,
@@ -64,6 +65,7 @@ export default {
   },
   created() {
     document.title = 'Pixiviz';
+    this.fetchLandingBg()
   },
   async mounted() {
     if (!checkTrustHost(this.$config)) {
@@ -115,6 +117,28 @@ export default {
       }
       const recordTime = parseInt(record, 10);
       return recordTime >= timeLimit;
+    },
+    async fetchLandingBg() {
+      const cachedBg = sessionStorage.getItem('__home-bg')
+      if (cachedBg) {
+        this.landingBG = cachedBg
+        return
+      }
+      try {
+        const url = 'https://ef.kanata.ml/cp/600/https:/pixiv.cocomi.eu.org/ajax/discovery/artworks'
+        const res = await this.axios.get(url, {
+          params: {
+            mode: 'safe',
+            limit: 1
+          }
+        })
+        let bg = res.data.thumbnails.illust.filter(e => !e.isAdContainer)[0].url
+        bg = `https://nfn.kanata.ml/pximg${bg.replace(/\/-\/c\/\d+x\d+.*\/.*\/img\//i, '/img-master/img/').replace(/(_p\d+_)\w+1200/, '$1master1200')}`
+        this.landingBG = bg
+        sessionStorage.setItem('__home-bg', bg)
+      } catch (error) {
+        this.landingBG = this.staticLandingBG
+      }
     },
     async fetchAnnounce() {
       let res;
@@ -257,3 +281,28 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="less">
+.landing-container{
+  padding: 0;
+
+  .landing {
+    max-width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    background-position: center center;
+    background-size: cover;
+    filter: brightness(0.9);
+
+    .landing-card {
+      margin-bottom: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+  }
+
+  .landing-real-content {
+    position: initial;
+  }
+}
+</style>

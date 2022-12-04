@@ -13,9 +13,6 @@ const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
 
 module.exports = {
   devServer: {
-    http2: true,
-    https: true,
-    allowedHosts: ['pixiviz.pwp.app'],
     proxy: {
       '/api': {
         target: 'https://pixiviz.pwp.app/api',
@@ -29,7 +26,7 @@ module.exports = {
   pwa: {
     name: 'Pixiviz',
     themeColor: '#fafafa',
-    msTileColor: '#da7a85',
+    msTileColor: '#8F77B5',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black-translucent',
     manifestOptions: {

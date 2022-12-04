@@ -147,9 +147,9 @@ export default {
       }
       this.cachedState = $state;
       this.axios
-        .get(`${this.$config.api_prefix}/user/search`, {
+        .get(`${this.$config.api_prefix}/search_user`, {
           params: {
-            keyword: this.keyword,
+            word: this.keyword,
             page: this.page,
           },
         })
@@ -294,7 +294,7 @@ export default {
     },
     checkIfArtist() {
       this.axios
-        .get(`${this.$config.api_prefix}/user/detail`, {
+        .get(`${this.$config.api_prefix}/member`, {
           params: {
             id: parseInt(this.keyword, 10),
           },

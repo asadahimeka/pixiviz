@@ -1,9 +1,9 @@
-import { checkTrustHost } from './host';
+// import { checkTrustHost } from './host';
 
 const getGoogleFontHost = () => {
-  if (checkTrustHost()) {
-    return 'https://gfonts.pwp.link';
-  }
+  // if (checkTrustHost()) {
+  //   return 'https://gfonts.pwp.link';
+  // }
   return 'https://fonts.googleapis.com';
 };
 

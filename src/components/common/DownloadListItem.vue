@@ -29,7 +29,7 @@ export default {
       if (this.$store.state.darkMode.enabled) {
         return `background-image: linear-gradient(to right, #d7707c 0%, #d7707c ${progress}%, #424242 ${progress}%, #424242 100%) !important;`;
       } else {
-        return `background-image: linear-gradient(to right, #da7a85 0%, #da7a85 ${progress}%, #eaeaea ${progress}%, #eaeaea 100%) !important;`;
+        return `background-image: linear-gradient(to right, #8F77B5 0%, #8F77B5 ${progress}%, #eaeaea ${progress}%, #eaeaea 100%) !important;`;
       }
     },
   },

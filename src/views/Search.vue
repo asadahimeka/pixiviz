@@ -17,6 +17,15 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
       </div>
+      <el-dropdown style="margin-left: 15px;vertical-align: 0.5em;" @command="onUserIriCmd">
+        <span class="el-dropdown-link">
+          users入り<i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item v-for="item in usersIriTags" :key="item.value"
+            :command="item.value">{{item.text}}</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
       <div class="search-header-close">
         <i class="el-icon-close" @click="handleBack"></i>
       </div>
@@ -82,6 +91,7 @@
 import Waterfall from '../components/common/Waterfall';
 import BackToTop from '../components/common/BackToTop';
 // Util
+import throttle from 'lodash-es/throttle'
 import MobileResponsive from '../util/MobileResponsive';
 import { imagePassCheck, filterImages } from '../util/filter';
 import { setOgTags, getOgTags } from '../util/og';
@@ -126,6 +136,18 @@ export default {
       iPadStyle: /iPad/i.test(navigator.userAgent),
       // notification
       illustNotice: null,
+      usersIriTags: [
+        { text: 'users入り', value: '' },
+        { text: '30000users入り', value: '30000users入り' },
+        { text: '20000users入り', value: '20000users入り' },
+        { text: '10000users入り', value: '10000users入り' },
+        { text: '7500users入り', value: '7500users入り' },
+        { text: '5000users入り', value: '5000users入り' },
+        { text: '1000users入り', value: '1000users入り' },
+        { text: '500users入り', value: '500users入り' },
+        { text: '250users入り', value: '250users入り' },
+        { text: '100users入り', value: '100users入り' },
+      ],
     };
   },
   watch: {
@@ -157,6 +179,10 @@ export default {
     mobileWaterfallWidth() {
       return this.cardWidth * 2 + 32;
     },
+    usersIriTag() {
+      return this.usersIriTags
+        .find(({ value }) => value && this.keywordInput.includes(value))?.value
+    }
   },
   mounted() {
     // 检查屏蔽
@@ -208,7 +234,17 @@ export default {
       }
       return [];
     },
-    infiniteHandler($state) {
+    onUserIriCmd(e) {
+      if (!e) return
+      const { keywordInput } = this
+      this.keywordInput = `${keywordInput.replace(/\d+users入り/g, '').trim()} ${e}`
+      this.submitSearch()
+    },
+    infiniteHandler: throttle(function ($state) {
+      if (this.page > 5) {
+        $state.complete()
+        return
+      }
       // 屏蔽了就不发包
       if (this.keywordBlocked || !this.keyword) {
         $state.complete();
@@ -216,7 +252,7 @@ export default {
       }
       this.cachedState = $state;
       this.axios
-        .get(`${this.$config.api_prefix}/illust/search`, {
+        .get(`${this.$config.api_prefix}/search`, {
           params: {
             word: this.keyword,
             page: this.page,
@@ -232,9 +268,9 @@ export default {
             if (!response.data.illusts) {
               // 加载失败
               $state.complete();
-              if (response.data.sensitive) {
-                this.sensitiveBlocked = true;
-              }
+              // if (response.data.sensitive) {
+              //   this.sensitiveBlocked = true;
+              // }
               return;
             }
             if (response.data.illusts.length === 0) {
@@ -263,17 +299,18 @@ export default {
             this.cachedState = null;
           },
         );
-    },
+    }, 1000),
     fetchSuggestion() {
+      if (this.usersIriTag) return
       this.axios
-        .get(`${this.$config.api_prefix}/search/suggestions`, {
+        .get(`${this.$config.api_prefix}/search_autocomplete`, {
           params: {
-            keyword: this.keyword,
+            word: this.keyword,
           },
         })
         .then((res) => {
-          if (res.data && Array.isArray(res.data)) {
-            this.suggestions = res.data.filter(
+          if (Array.isArray(res.data?.tags)) {
+            this.suggestions = res.data.tags.map(e => e.name).filter(
               (item) => item !== this.keyword && this.checkSuggestion(item),
             );
             this.$store.commit('search/setSuggestions', this.suggestions);
@@ -308,7 +345,7 @@ export default {
     },
     checkIfIllust() {
       this.axios
-        .get(`${this.$config.api_prefix}/illust/detail`, {
+        .get(`${this.$config.api_prefix}/illust`, {
           params: {
             id: parseInt(this.keyword, 10),
           },

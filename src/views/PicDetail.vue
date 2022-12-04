@@ -248,7 +248,7 @@ export default {
         return;
       }
       this.axios
-        .get(`${this.getApiPrefix()}/illust/detail`, {
+        .get(`${this.getApiPrefix()}/illust`, {
           params: {
             id: this.imageId,
           },
@@ -319,7 +319,7 @@ export default {
       }
       this.relatedLoading = true;
       this.axios
-        .get(`${this.getApiPrefix()}/illust/related`, {
+        .get(`${this.getApiPrefix()}/related`, {
           params: {
             id: this.imageId,
             page: this.realRelatedPage,

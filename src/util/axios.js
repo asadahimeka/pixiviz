@@ -35,8 +35,8 @@ const fixConfig = (axiosIns, config) => {
 export const wrapAxios = (axiosIns, pixivizConf) => {
   axiosIns.interceptors.response.use(
     (res) => {
-      if (res.config.retryTimes && res.config.url.includes('/v1')) {
-        const prefix = `${res.config.url.split('/v1')[0]}/v1`;
+      if (res.config.retryTimes && res.config.url.includes('/pixiv')) {
+        const prefix = `${res.config.url.split('/pixiv')[0]}/pixiv`;
         window.localStorage.setItem('pixiviz-api-prefix', prefix);
       }
       return res;
@@ -50,11 +50,11 @@ export const wrapAxios = (axiosIns, pixivizConf) => {
         return Promise.reject(err);
       }
       const { url } = reqConfig;
-      if (!url.includes('/v1')) {
+      if (!url.includes('/pixiv')) {
         return Promise.reject(err);
       }
-      const splitted = url.split('/v1');
-      const prefix = `${splitted[0]}/v1`;
+      const splitted = url.split('/pixiv');
+      const prefix = `${splitted[0]}/pixiv`;
       const reqPath = splitted[1];
       const { api_prefix_list: prefixList } = pixivizConf;
       if (!prefixList.includes(prefix)) {

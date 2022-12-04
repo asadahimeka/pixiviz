@@ -17,8 +17,8 @@ const IMG_CHECK_IDS = [
   '75966930',
 ];
 
-const API_CHECK_PATH = `/detail?id=${IMG_CHECK_IDS[Date.now() % IMG_CHECK_IDS.length]}`;
-const IMAGE_CHECK_PATH = '/img-original/img/2017/08/14/12/45/09/64407731_p0.png';
+const API_CHECK_PATH = `/illust?id=${IMG_CHECK_IDS[Date.now() % IMG_CHECK_IDS.length]}`;
+const IMAGE_CHECK_PATH = '/c/540x540_70/img-master/img/2022/11/25/00/00/41/103070297_p0_master1200.jpg';
 const API_PREFIX_STORE_KEY = 'pixiviz-api-prefix';
 
 const storedApiPrefix = window.localStorage.getItem(API_PREFIX_STORE_KEY);

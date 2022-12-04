@@ -30,7 +30,7 @@ export default {
   computed: {
     avatar() {
       if (this.author) {
-        return this.author.profile_image_urls.medium.replace('i.pximg.net', this.getProxyHost());
+        return this.author.profile_image_urls.medium.replace('i.pximg.net', 'i.pixiv.re');
       } else {
         return '';
       }

@@ -1,23 +1,21 @@
 {
-  "website_url": "https://pixiviz.xyz",
+  "website_url": "https://pixiviz.kanata.ml",
   "public_proxy": "i.pixiv.re",
-  "image_proxy_host": "pixiv-image.pwp.link",
-  "download_proxy_host": "pixiv-image.pwp.link",
+  "image_proxy_host": "pximg.cocomi.cf",
+  "download_proxy_host": "pximg.cocomi.cf",
   "remote_conf_url": "https://cfs.tigo.pwp.app/pixiviz-prod.json",
   "api_prefix": [
-    "https://pixiviz-api-hk.pwp.link/v1",
-    "https://pixiviz-api-tc.pwp.link/v1",
-    "https://pixiviz-api-rn.pwp.link/v1"
+    "https://ef.kanata.ml/hibi3/api/pixiv"
   ],
   "guide_url": "https://blog.pwp.space/article/Pixiviz%E9%A3%9F%E7%94%A8%E6%8C%87%E5%8D%97.md",
   "donate_url": "https://afdian.net/@backrunner",
   "landing_bg_id": 94067980,
-  "trust_host": ["pixiviz.pwp.app", "pixiviz.xyz"],
+  "trust_host": ["pixiviz.kanata.ml"],
   "announcement_feed": "https://cfs.tigo.pwp.app/pixiviz-anno-prod.json",
   "afdian_manage_api": "https://afdian-manage.pwp.app",
-  "show_guide": true,
-  "show_donate": true,
-  "check_announce": true,
+  "show_guide": false,
+  "show_donate": false,
+  "check_announce": false,
   "maintain": {
     "enable": false
   }

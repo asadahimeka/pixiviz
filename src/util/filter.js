@@ -21,7 +21,7 @@ const getFilterLevel = () => {
 };
 
 export const imagePassCheck = (img) => {
-  if (img.x_restrict || img.sanity_level > getFilterLevel()) {
+  if (img.x_restrict/*  || img.sanity_level > getFilterLevel() */) {
     return false;
   }
   if (img.caption) {
@@ -44,7 +44,8 @@ export const imagePassCheck = (img) => {
 };
 
 export const filterImages = (imgs, dropManga = true, dropTags = true) => {
-  return imgs.filter((img) => {
+  return imgs
+  /* return imgs.filter((img) => {
     if (!img) {
       return false;
     }
@@ -88,5 +89,5 @@ export const filterImages = (imgs, dropManga = true, dropTags = true) => {
     }
     if (!window.pixiviz.infoMap[img.id]) window.pixiviz.infoMap[img.id] = img;
     return true;
-  });
+  }); */
 };
