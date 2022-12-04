@@ -52,8 +52,8 @@ export default {
   },
   data() {
     return {
-      staticLandingBG: require(`@/assets/images/landing${window.isSafari ? '.jpg' : '.webp'}`),
-      landingBG: '',
+      staticLandingBG: require(`@/assets/images/98606454.jpg`),
+      landingBG: require(`@/assets/images/98606454.jpg`),
       guideNotice: null,
       notFirstUse: false,
       announceId: -1,
@@ -134,8 +134,15 @@ export default {
         })
         let bg = res.data.thumbnails.illust.filter(e => !e.isAdContainer)[0].url
         bg = `https://nfn.kanata.ml/pximg${bg.replace(/\/-\/c\/\d+x\d+.*\/.*\/img\//i, '/img-master/img/').replace(/(_p\d+_)\w+1200/, '$1master1200')}`
-        this.landingBG = bg
-        sessionStorage.setItem('__home-bg', bg)
+        let img = new Image()
+        img.onload = () => {
+          setTimeout(() => {
+            this.landingBG = bg
+            sessionStorage.setItem('__home-bg', bg)
+          }, 200)
+          img = null
+        }
+        img.src = bg
       } catch (error) {
         this.landingBG = this.staticLandingBG
       }
@@ -287,12 +294,24 @@ export default {
   padding: 0;
 
   .landing {
+    position: relative;
     max-width: 100vw;
     height: 100vh;
     border-radius: 0;
-    background-position: center center;
+    background-position: center top;
     background-size: cover;
-    filter: brightness(0.9);
+    filter: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.2);
+    }
 
     .landing-card {
       margin-bottom: 0;
@@ -302,7 +321,8 @@ export default {
   }
 
   .landing-real-content {
-    position: initial;
+    position: relative;
+    z-index: 2;
   }
 }
 </style>

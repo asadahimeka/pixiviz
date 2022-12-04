@@ -112,7 +112,7 @@ export default {
   },
   methods: {
     goToBgUrl() {
-      const id = sessionStorage.getItem('__home-bg')?.match(/\/(\d+)_p\d+_master1200/)[1] || this.$config.landing_bg_id
+      const id = sessionStorage.getItem('__home-bg')?.match(/\/(\d+)_p\d+_master1200/)[1] || 98606454
       window.open(`/pic/${id}`, '_blank')
     },
     handleDblClick(e) {

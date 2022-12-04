@@ -17,7 +17,7 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
       </div>
-      <el-dropdown style="margin-left: 15px;vertical-align: 0.5em;" @command="onUserIriCmd">
+      <el-dropdown trigger="click" style="margin-left: 15px;vertical-align: 0.5em;" @command="onUserIriCmd">
         <span class="el-dropdown-link">
           users入り<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
