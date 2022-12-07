@@ -54,6 +54,10 @@ import pixlandIns from './util/pixland';
 import { checkTrustHost } from './util/host';
 import { getSensitiveWords } from './util/sensitiveWords';
 
+import { inject } from '@vercel/analytics'
+
+inject()
+
 Vue.prototype.$sensitiveWords = getSensitiveWords();
 
 // Register handlers
