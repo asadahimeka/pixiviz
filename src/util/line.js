@@ -127,10 +127,9 @@ export const defineApiPrefix = (conf, disabled) => {
   }
 };
 
-const isHostAlive = (url, resolveRes) => {
+const isHostAlive = (url, resolveRes, method = 'head') => {
   return new Promise((resolve, reject) => {
-    axios
-      .head(url, {
+    axios[method](url, {
         timeout: 5000,
       })
       .then((res) => {
@@ -147,7 +146,7 @@ const isHostAlive = (url, resolveRes) => {
 };
 
 export const isAPIAlive = (prefix) => {
-  return isHostAlive(`${prefix}${API_CHECK_PATH}`, prefix);
+  return isHostAlive(`${prefix}${API_CHECK_PATH}`, prefix, 'get');
 };
 
 export const isProxyAlive = (host) => {

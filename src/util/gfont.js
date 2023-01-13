@@ -4,7 +4,7 @@ const getGoogleFontHost = () => {
   // if (checkTrustHost()) {
   //   return 'https://gfonts.pwp.link';
   // }
-  return 'https://fonts.googleapis.com';
+  return 'https://fonts.loli.net';
 };
 
 export const loadGoogleFont = () => {
