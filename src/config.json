@@ -5,7 +5,7 @@
   "download_proxy_host": "pximg.cocomi.cf",
   "remote_conf_url": "https://cfs.tigo.pwp.app/pixiviz-prod.json",
   "api_prefix": [
-    "https://hibi2.cocomi.cf/api/pixiv"
+    "https://hibiapi.yourworld.fun/api/pixiv"
   ],
   "guide_url": "https://blog.pwp.space/article/Pixiviz%E9%A3%9F%E7%94%A8%E6%8C%87%E5%8D%97.md",
   "donate_url": "https://afdian.net/@backrunner",
