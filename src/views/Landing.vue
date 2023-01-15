@@ -125,11 +125,11 @@ export default {
         return
       }
       try {
-        const url = 'https://ef.kanata.ml/cp/600/https:/pixiv.cocomi.eu.org/ajax/discovery/artworks'
+        const url = 'https://cors-fetch.deno.dev/https://www.pixivs.cn/ajax/illust/discovery'
         const res = await this.axios.get(url, {
           params: {
             mode: 'safe',
-            limit: 1
+            max: 1
           }
         })
         let bg = res.data.thumbnails.illust.filter(e => !e.isAdContainer)[0].url
