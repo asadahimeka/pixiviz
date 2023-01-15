@@ -42,7 +42,7 @@ module.exports = {
       runtimeCaching: [
         {
           // 静态文件缓存，网络资源优先，7天过期
-          urlPattern: /^https:\/\/pixiviz\.pwp\.app(\/.*\.(html|js|css))?$/,
+          urlPattern: /^https:\/\/pixiviz\.kanata\.ml(\/.*\.(html|js|css))?$/,
           handler: 'NetworkFirst',
           options: {
             cacheName: 'static-files',
@@ -57,7 +57,7 @@ module.exports = {
         },
         {
           // 静态图片缓存，本地资源优先，3天过期
-          urlPattern: /^https:\/\/pixiviz\.pwp\.app(\/.*\.(jpg|jpeg|png|webp|svg))?$/,
+          urlPattern: /^https:\/\/pixiviz\.kanata\.ml(\/.*\.(jpg|jpeg|png|webp|svg))?$/,
           handler: 'CacheFirst',
           options: {
             cacheName: 'static-imgs',
@@ -98,63 +98,63 @@ module.exports = {
             },
           },
         },
-        {
-          // 作者头像缓存，14天过期，最多缓存1000个
-          urlPattern: /^https:\/\/pixiv-image(-[a-z]{2})?\.pwp\.link\/user-profile\/.*$/,
-          handler: 'CacheFirst',
-          options: {
-            cacheName: 'artist-avatar',
-            cacheableResponse: {
-              statuses: [0, 200],
-            },
-            expiration: {
-              maxAgeSeconds: 86400 * 30,
-              maxEntries: 1000,
-            },
-            fetchOptions: {
-              credentials: 'omit',
-              mode: 'cors',
-            },
-          },
-        },
-        {
-          // 小图缓存，最多1000个
-          urlPattern: /^https:\/\/pixiv-image(-[a-z]{2})?\.pwp\.link\/.+\/img-master\/.*$/,
-          handler: 'CacheFirst',
-          options: {
-            cacheName: 'pic-master',
-            cacheableResponse: {
-              statuses: [0, 200],
-            },
-            expiration: {
-              maxAgeSeconds: 86400, // cache for 3h
-              maxEntries: 1000,
-            },
-            fetchOptions: {
-              credentials: 'omit',
-              mode: 'cors',
-            },
-          },
-        },
-        {
-          // zip缓存，最多缓存10个，有效期3天
-          urlPattern: /^https:\/\/pixiv-image(-[a-z]{2})?\.pwp\.link\/.*\.zip$/,
-          handler: 'CacheFirst',
-          options: {
-            cacheName: 'ugoira-zip',
-            cacheableResponse: {
-              statuses: [0, 200],
-            },
-            expiration: {
-              maxAgeSeconds: 86400 * 3,
-              maxEntries: 10,
-            },
-            fetchOptions: {
-              credentials: 'omit',
-              mode: 'cors',
-            },
-          },
-        },
+        // {
+        //   // 作者头像缓存，14天过期，最多缓存1000个
+        //   urlPattern: /^https:\/\/pximg\.cocomi\.cf\/user-profile\/.*$/,
+        //   handler: 'CacheFirst',
+        //   options: {
+        //     cacheName: 'artist-avatar',
+        //     cacheableResponse: {
+        //       statuses: [0, 200],
+        //     },
+        //     expiration: {
+        //       maxAgeSeconds: 86400 * 30,
+        //       maxEntries: 1000,
+        //     },
+        //     fetchOptions: {
+        //       credentials: 'omit',
+        //       mode: 'cors',
+        //     },
+        //   },
+        // },
+        // {
+        //   // 小图缓存，最多1000个
+        //   urlPattern: /^https:\/\/pximg\.cocomi\.cf\/.+\/img-master\/.*$/,
+        //   handler: 'CacheFirst',
+        //   options: {
+        //     cacheName: 'pic-master',
+        //     cacheableResponse: {
+        //       statuses: [0, 200],
+        //     },
+        //     expiration: {
+        //       maxAgeSeconds: 86400, // cache for 3h
+        //       maxEntries: 1000,
+        //     },
+        //     fetchOptions: {
+        //       credentials: 'omit',
+        //       mode: 'cors',
+        //     },
+        //   },
+        // },
+        // {
+        //   // zip缓存，最多缓存10个，有效期3天
+        //   urlPattern: /^https:\/\/pximg\.cocomi\.cf\/.*\.zip$/,
+        //   handler: 'CacheFirst',
+        //   options: {
+        //     cacheName: 'ugoira-zip',
+        //     cacheableResponse: {
+        //       statuses: [0, 200],
+        //     },
+        //     expiration: {
+        //       maxAgeSeconds: 86400 * 3,
+        //       maxEntries: 10,
+        //     },
+        //     fetchOptions: {
+        //       credentials: 'omit',
+        //       mode: 'cors',
+        //     },
+        //   },
+        // },
         // gfont缓存，最多缓存50个
         {
           urlPattern: /^https:\/\/gfonts\.pwp\.link\/.*$/,
