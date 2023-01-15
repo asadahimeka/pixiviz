@@ -132,7 +132,7 @@ export default {
             max: 1
           }
         })
-        let bg = res.data.thumbnails.illust.filter(e => !e.isAdContainer)[0].url
+        let bg = res.data.illusts.filter(e => !e.isAdContainer)[0].url
         bg = `https://nfn.kanata.ml/pximg${bg.replace(/\/-\/c\/\d+x\d+.*\/.*\/img\//i, '/img-master/img/').replace(/(_p\d+_)\w+1200/, '$1master1200')}`
         let img = new Image()
         img.onload = () => {
