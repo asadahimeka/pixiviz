@@ -1,5 +1,15 @@
 {
   "github": {
     "silent": true
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/prks/acg/:match*",
+      "destination": "https://www.pixivs.cn/:match*"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
+    }
+  ]
 }

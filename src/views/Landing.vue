@@ -125,8 +125,9 @@ export default {
         return
       }
       try {
-        const url = 'https://cors-fetch.deno.dev/https://www.pixivs.cn/ajax/illust/discovery'
+        const url = '/prks/acg/ajax/illust/discovery'
         const res = await this.axios.get(url, {
+          baseURL: '/',
           params: {
             mode: 'safe',
             max: 1

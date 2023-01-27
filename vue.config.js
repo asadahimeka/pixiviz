@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const zopfli = require('@gfx/zopfli');
 const BrotliPlugin = require('brotli-webpack-plugin');
-const JinDanWebpackPlugin = require('jindan-webpack-plugin');
+// const JinDanWebpackPlugin = require('jindan-webpack-plugin');
 const path = require('path');
 const fs = require('fs');
 
@@ -38,7 +38,7 @@ module.exports = {
       clientsClaim: true,
       importWorkboxFrom: 'local',
       importsDirectory: 'js',
-      navigateFallbackBlacklist: [/^\/api\//],
+      navigateFallbackBlacklist: [/^\/api\//, /^\/prks\//],
       runtimeCaching: [
         {
           // 静态文件缓存，网络资源优先，7天过期

@@ -48,6 +48,13 @@
         </i>
       </div>
       <div class="pic-presentation-info-caption">
+        <a
+          :href="`https://www.pixiv.net/artworks/${image.id}`"
+          target="_blank"
+          rel="noopenner noreferrer"
+        >在 Pixiv 上查看</a>
+      </div>
+      <div class="pic-presentation-info-caption">
         <span v-html="image ? image.caption : ''"></span>
       </div>
       <div class="pic-presentation-info-tags">

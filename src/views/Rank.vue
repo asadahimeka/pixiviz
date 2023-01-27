@@ -1,10 +1,8 @@
 <template>
-  <div
-    :class="{
-      'rank-container': true,
-      'ipad-only': iPadStyle,
-    }"
-  >
+  <div :class="{
+    'rank-container': true,
+    'ipad-only': iPadStyle,
+  }">
     <div class="rank-header">
       <div class="rank-header-title">
         <span>排行榜</span>
@@ -32,29 +30,18 @@
             <span>{{ displayDate }}</span>
           </div>
         </el-popover>
-        <div
-          class="rank-body-date-item rank-body-date-next"
-          @click="handleDateChanged(1)"
-          v-show="showDateNext"
-        >
+        <div class="rank-body-date-item rank-body-date-next" @click="handleDateChanged(1)" v-show="showDateNext">
           <span>{{ nextDateText }}{{ dateUnit }}</span>
           <i class="el-icon-arrow-right"></i>
         </div>
       </div>
       <div class="rank-body-content">
         <div class="waterfall-wrapper">
-          <Waterfall
-            :class="{
-              'waterfall-responsive': waterfallResponsive,
-            }"
-            :key="waterfallResponsive"
-            ref="waterfall"
-            :images="images"
-            @card-clicked="handleCardClicked"
-            :cardWidth="cardWidth"
-            imageType="medium"
-            :style="waterfallResponsive ? null : { width: `${mobileWaterfallWidth}px` }"
-          />
+          <Waterfall :class="{
+            'waterfall-responsive': waterfallResponsive,
+          }" :key="waterfallResponsive" ref="waterfall" :images="images" @card-clicked="handleCardClicked"
+            :cardWidth="cardWidth" imageType="medium"
+            :style="waterfallResponsive ? null : { width: `${mobileWaterfallWidth}px` }" />
         </div>
       </div>
     </div>
@@ -62,12 +49,8 @@
       <p>看上去数据加载失败了</p>
       <el-button type="primary" round @click="fetchNew">点我重试</el-button>
     </div>
-    <infinite-loading
-      :identifier="waterfallIdentifier"
-      @infinite="infiniteHandler"
-      spinner="spiral"
-      v-if="!loadFailed"
-    ></infinite-loading>
+    <infinite-loading :identifier="waterfallIdentifier" @infinite="infiniteHandler" spinner="spiral"
+      v-if="!loadFailed"></infinite-loading>
     <BackToTop ref="backToTop" />
   </div>
 </template>
@@ -91,7 +74,15 @@ const MODE_TO_TEXT = {
   month: '月排行榜',
   day_male: '男性热榜',
   day_female: '女性热榜',
+  week_original: '原创周榜',
   week_rookie: '新秀周榜',
+  day_ai: 'AI 日榜',
+  day_r18: 'R18 日榜',
+  day_r18_ai: 'R18-AI 日榜',
+  day_male_r18: 'R18 男性日榜',
+  day_female_r18: 'R18 女性日榜',
+  week_r18: 'R18 周榜',
+  week_r18g: 'R18-G 周榜',
 };
 
 export default {
@@ -161,7 +152,7 @@ export default {
           .startOf('day')
           .unix() -
           this.dateObject.unix()) /
-          86400 >
+        86400 >
         2
       );
     },

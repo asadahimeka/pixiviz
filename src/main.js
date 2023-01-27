@@ -38,8 +38,8 @@ import { getOgTags } from './util/og';
 import {
   defineProxyHosts,
   defineApiPrefix,
-  checkAPIHostAlive,
-  checkProxyHostAlive,
+  // checkAPIHostAlive,
+  // checkProxyHostAlive,
 } from './util/line';
 import bus from './util/bus';
 import { registerThemeColorHandler } from './util/darkMode';
@@ -51,7 +51,7 @@ import './registerServiceWorker';
 import pixlandIns from './util/pixland';
 
 // import { initBaiduStat } from './util/statistics';
-import { checkTrustHost } from './util/host';
+// import { checkTrustHost } from './util/host';
 import { getSensitiveWords } from './util/sensitiveWords';
 
 import { inject } from '@vercel/analytics'
@@ -229,9 +229,9 @@ const execute = async () => {
   // render
   createInstance();
   // request remote
-  if (!checkTrustHost(config)) {
-    return;
-  }
+  // if (!checkTrustHost(config)) {
+  //   return;
+  // }
   // try {
   //   await requestRemoteConfig();
   //   bus.$emit('remote-config-fetched');
@@ -244,12 +244,12 @@ const execute = async () => {
   //   console.error('Request remote config error.', e);
   // }
   // check api host alive
-  try {
-    checkAPIHostAlive(config);
-    checkProxyHostAlive(config);
-  } catch (e) {
-    console.error('Smart line check failed.', e);
-  }
+  // try {
+  //   checkAPIHostAlive(config);
+  //   checkProxyHostAlive(config);
+  // } catch (e) {
+  //   console.error('Smart line check failed.', e);
+  // }
 };
 
 // init stat
