@@ -15,6 +15,9 @@ import pic from './modules/pic';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  state: {
+    showNSFW: !!localStorage.getItem('pz_showNSFW') || false
+  },
   modules: {
     darkMode,
     landingBanner,

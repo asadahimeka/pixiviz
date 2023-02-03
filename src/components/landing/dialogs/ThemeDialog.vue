@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     class="dialog dialog-theme"
-    title="颜色主题设置"
+    title="设置"
     :width="dialogWidth"
     :visible.sync="show"
     append-to-body
@@ -27,6 +27,15 @@
           inactive-text="自动切换"
           :disabled="!themeForm.darkMode"
           @change="themeModeChanged"
+        >
+        </el-switch>
+      </el-form-item>
+      <el-form-item label="显示 NSFW 内容" label-width="140px">
+        <el-switch
+          :value="$store.state.showNSFW"
+          active-text="是"
+          inactive-text="否"
+          @change="nsfwChanged"
         >
         </el-switch>
       </el-form-item>
@@ -102,6 +111,25 @@ export default {
       window.pixiviz.darkPersist = value;
       window.localStorage.setItem('dark-persist', value);
     },
+    nsfwChanged(value) {
+      if (value) {
+        this.$confirm('确定要开启 NSFW 作品显示吗？请确保您的年龄已满18岁，且未违反当地法律法规所规定的内容。', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          localStorage.setItem('pz_showNSFW', 1)
+          setTimeout(() => {
+            location.reload()
+          }, 200)
+        })
+      } else {
+        localStorage.removeItem('pz_showNSFW')
+        setTimeout(() => {
+          location.reload()
+        }, 200)
+      }
+    },
     enableDarkMode() {
       this.$bus.$emit('dark-mode-enable');
     },
@@ -114,3 +142,11 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="less">
+.dialog-theme {
+  ::v-deep .el-form-item__content .el-switch {
+    top: -3px;
+  }
+}
+</style>

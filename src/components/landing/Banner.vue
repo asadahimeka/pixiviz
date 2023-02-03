@@ -28,23 +28,23 @@
             <!-- <a href="javascript:;" @click="showAccountDialog" @contextmenu.prevent>帐号</a> -->
           </div>
         </div>
-        <!-- <div class="about-settings">
+        <div class="about-settings">
           <div class="about-settings-title">
             <span>设置</span>
           </div>
           <div class="about-settings-link">
-            <a id="about-theme" href="javascript:;" @click="openThemeDialog" @contextmenu.prevent
-              >主题</a
-            >
-            <a
+            <a id="about-theme" href="javascript:;" @click="openThemeDialog" @contextmenu.prevent>
+              打开设置
+            </a>
+            <!-- <a
               id="about-privacy"
               href="javascript:;"
               @click="openPrivacyDialog"
               @contextmenu.prevent
               >隐私</a
-            >
+            > -->
           </div>
-        </div> -->
+        </div>
         <div class="about-copyright">
           <div class="about-copyright-item">
             <span>Copyright &copy; 2022 pwp.app.</span>
@@ -52,9 +52,9 @@
           <div class="about-copyright-item">
             <span>
               <!-- <a href="https://pixiviz.pwp.app/sponsor" target="_blank">发电名录</a>
-              <span class="about-copyright-split">|</span>
-              <a href="https://github.com/pwp-app/pixiviz/discussions" target="_blank">交流反馈</a>
               <span class="about-copyright-split">|</span> -->
+              <a href="https://github.com/asadahimeka/pixiviz/discussions" target="_blank">交流反馈</a>
+              <span class="about-copyright-split">|</span>
               <a @click="goToBgUrl">主页背景</a>
             </span>
           </div>
@@ -68,9 +68,9 @@
       </div>
     </div>
     <ThemeDialog id="landing-dialog-theme" ref="theme" />
-    <PrivacyDialog id="landing-dialog-privacy" ref="privacy" />
-    <CommonLogin id="landing-dialog-login" ref="login" />
-    <UserInfo id="landing-dialog-user" ref="user" />
+    <!-- <PrivacyDialog id="landing-dialog-privacy" ref="privacy" /> -->
+    <!-- <CommonLogin id="landing-dialog-login" ref="login" /> -->
+    <!-- <UserInfo id="landing-dialog-user" ref="user" /> -->
   </div>
 </template>
 
@@ -78,9 +78,9 @@
 import { checkTrustHost } from '@/util/host';
 import { version as appVer } from '../../version.js';
 import ThemeDialog from './dialogs/ThemeDialog.vue';
-import PrivacyDialog from './dialogs/PrivacyDialog.vue';
-import CommonLogin from '../common/CommonLogin.vue';
-import UserInfo from '../common/UserInfo.vue';
+// import PrivacyDialog from './dialogs/PrivacyDialog.vue';
+// import CommonLogin from '../common/CommonLogin.vue';
+// import UserInfo from '../common/UserInfo.vue';
 import GitHubIcon from '../icons/github';
 
 const GITHUB_URL = 'https://github.com/asadahimeka/pixiviz';
@@ -90,9 +90,9 @@ export default {
   components: {
     GitHubIcon,
     ThemeDialog,
-    PrivacyDialog,
-    CommonLogin,
-    UserInfo,
+    // PrivacyDialog,
+    // CommonLogin,
+    // UserInfo,
   },
   data() {
     return {

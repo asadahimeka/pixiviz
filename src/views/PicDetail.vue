@@ -273,7 +273,7 @@ export default {
     },
     afterLoad() {
       // check block
-      if (!imagePassCheck(this.image)) {
+      if (!this.$store.state.showNSFW && !imagePassCheck(this.image)) {
         this.block = true;
         return;
       }

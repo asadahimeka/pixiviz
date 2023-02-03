@@ -116,7 +116,7 @@ export default {
       loading: false,
       loadError: false,
       // block: this.image.x_strict ? true : this.image.sanity_level > 5,
-      block: !!this.image.x_restrict,
+      block: !this.$store.state.showNSFW && !!this.image.x_restrict,
       moreMenuVisible: false,
     };
   },

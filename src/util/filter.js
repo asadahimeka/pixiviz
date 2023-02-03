@@ -1,24 +1,27 @@
 import { getSensitiveWords } from './sensitiveWords';
 
-const sensitiveWords = getSensitiveWords();
+const sensitiveWords = [
+  ...getSensitiveWords(),
+  'loli', 'ペド', '恋童', '幼女'
+]
 const blockTags = [
-  '尻',
-  '極上の乳',
-  '水着',
   '漫画素材工坊',
   '描き方',
   'お絵かきTIPS',
+  'ペド',
+  '恋童',
+  '幼女',
   ...sensitiveWords,
 ];
 const mangaTags = ['漫画'];
-const blockTitle = ['水着'];
+const blockTitle = ['loli', 'ペド', '恋童', '幼女'];
 
-const getFilterLevel = () => {
-  if (window.pixiviz?.pixland?.isLogin) {
-    return 4;
-  }
-  return 3;
-};
+// const getFilterLevel = () => {
+//   if (window.pixiviz?.pixland?.isLogin) {
+//     return 4;
+//   }
+//   return 3;
+// };
 
 export const imagePassCheck = (img) => {
   if (img.x_restrict/*  || img.sanity_level > getFilterLevel() */) {
@@ -43,17 +46,22 @@ export const imagePassCheck = (img) => {
   return true;
 };
 
-export const filterImages = (imgs, dropManga = true, dropTags = true) => {
-  return imgs
-  /* return imgs.filter((img) => {
+// const showNSFW = !!localStorage.getItem('pz_showNSFW')
+export const filterImages = (imgs, dropManga = false, dropTags = true) => {
+  return imgs.filter((img) => {
     if (!img) {
       return false;
     }
     // filter restricted content
+    // if (
+    //   !showNSFW &&
+    //   (img.restrict ||
+    //     img.x_restrict)
+    //   // img.sanity_level >= getFilterLevel() ||
+    // ) {
+    //   return false;
+    // }
     if (
-      img.restrict ||
-      img.x_restrict ||
-      img.sanity_level >= getFilterLevel() ||
       (img.type !== 'illust' && dropManga) ||
       (img.title.includes('漫画') && dropManga)
     ) {
@@ -71,7 +79,7 @@ export const filterImages = (imgs, dropManga = true, dropTags = true) => {
       if (res) return res;
       return res || img.title.includes(curr);
     }, false);
-    if (!window.pixiviz?.pixland?.isLogin && titleBlocked) {
+    if (/* !window.pixiviz?.pixland?.isLogin &&  */titleBlocked) {
       return false;
     }
     // filter tags
@@ -89,5 +97,5 @@ export const filterImages = (imgs, dropManga = true, dropTags = true) => {
     }
     if (!window.pixiviz.infoMap[img.id]) window.pixiviz.infoMap[img.id] = img;
     return true;
-  }); */
+  });
 };

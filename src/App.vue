@@ -72,7 +72,8 @@ export default {
   },
   created() {
     // st check
-    if (!this.$route.query.st && this.$route.path === '/' && isWeChat()) {
+    // if (!this.$route.query.st && this.$route.path === '/' && isWeChat()) {
+    if (isWeChat()) {
       this.$router.replace({
         path: '/anti-share',
       });

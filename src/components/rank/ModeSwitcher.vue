@@ -29,7 +29,7 @@
         </div>
         <div :class="{ 'rank-mode-item': true, 'rank-mode-item-picked': mode === 'week_rookie' }"
           @click="handleClick('week_rookie')">
-          <span>新秀周榜</span>
+          <span>新人周榜</span>
         </div>
       </div>
       <div class="rank-mode-item-row">
@@ -62,6 +62,34 @@
         <div :class="{ 'rank-mode-item': true, 'rank-mode-item-picked': mode === 'week_r18g' }"
           @click="handleClick('week_r18g')">
           <span>R18-G 周榜</span>
+        </div>
+      </div>
+      <div class="rank-mode-item-row">
+        <div :class="{ 'rank-mode-item': true, 'rank-mode-item-picked': mode === 'day_manga' }"
+          @click="handleClick('day_manga')">
+          <span>漫画日榜</span>
+        </div>
+        <div :class="{ 'rank-mode-item': true, 'rank-mode-item-picked': mode === 'week_manga' }"
+          @click="handleClick('week_manga')">
+          <span>漫画周榜</span>
+        </div>
+        <div :class="{ 'rank-mode-item': true, 'rank-mode-item-picked': mode === 'month_manga' }"
+          @click="handleClick('month_manga')">
+          <span>漫画月榜</span>
+        </div>
+      </div>
+      <div class="rank-mode-item-row">
+        <div :class="{ 'rank-mode-item': true, 'rank-mode-item-picked': mode === 'week_rookie_manga' }"
+          @click="handleClick('week_rookie_manga')">
+          <span>漫画新人周榜</span>
+        </div>
+        <div :class="{ 'rank-mode-item': true, 'rank-mode-item-picked': mode === 'day_r18_manga' }"
+          @click="handleClick('day_r18_manga')">
+          <span>R18 漫画日榜</span>
+        </div>
+        <div :class="{ 'rank-mode-item': true, 'rank-mode-item-picked': mode === 'week_r18_manga' }"
+          @click="handleClick('week_r18_manga')">
+          <span>R18 漫画周榜</span>
         </div>
       </div>
     </div>

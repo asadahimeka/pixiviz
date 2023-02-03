@@ -75,7 +75,7 @@ const MODE_TO_TEXT = {
   day_male: '男性热榜',
   day_female: '女性热榜',
   week_original: '原创周榜',
-  week_rookie: '新秀周榜',
+  week_rookie: '新人周榜',
   day_ai: 'AI 日榜',
   day_r18: 'R18 日榜',
   day_r18_ai: 'R18-AI 日榜',
@@ -83,6 +83,12 @@ const MODE_TO_TEXT = {
   day_female_r18: 'R18 女性日榜',
   week_r18: 'R18 周榜',
   week_r18g: 'R18-G 周榜',
+  day_manga: '漫画日榜',
+  week_manga: '漫画周榜',
+  month_manga: '漫画月榜',
+  week_rookie_manga: '漫画新人周榜',
+  day_r18_manga: 'R18 漫画日榜',
+  week_r18_manga: 'R18 漫画周榜',
 };
 
 export default {
