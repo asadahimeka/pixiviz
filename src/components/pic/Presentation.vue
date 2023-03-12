@@ -53,6 +53,10 @@
           target="_blank"
           rel="noopenner noreferrer"
         >在 Pixiv 上查看</a>
+        <a
+          class="show_comments"
+          @click="showComments = true"
+        >查看评论</a>
       </div>
       <div class="pic-presentation-info-caption">
         <span v-html="image ? image.caption : ''"></span>
@@ -101,6 +105,9 @@
       v-show="showShareOverlay"
       @close="handleShareOverlayClose"
     />
+    <el-dialog :visible.sync="showComments">
+      <iframe v-if="showComments" style="width: 100%;height: 60vh;border: 0;" :src="`https://now.pixiv.pics/#/comments/${image.id}`"></iframe>
+    </el-dialog>
   </div>
 </template>
 
@@ -151,6 +158,7 @@ export default {
   },
   data() {
     return {
+      showComments: false,
       sizeCache: {},
       limitWidth: 1152,
       limitHeight: 796,
@@ -763,6 +771,9 @@ export default {
           if (window.isSafari) {
             url = url.replace('_webp', '');
           }
+          if (type === 'large') {
+            url = url.replace(/\/c\/\d+x\d+(_\d+)?\//g, '/')
+          }
           return url;
         }
       } else {
@@ -967,3 +978,20 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="less">
+::v-deep {
+  .el-dialog__body {
+    padding: 0;
+  }
+}
+.show_comments {
+  margin-left: 10px !important;
+  cursor: pointer;
+  &::before {
+    opacity: 0;
+    width: 0 !important;
+    margin: 0 !important;
+  }
+}
+</style>
