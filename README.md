@@ -1,4 +1,4 @@
-<div align="center"><img width="100" src="https://img.backrunner.top/pixiv-c/logo.png"></div>
+<div align="center"><img width="64" src="public/favicon.png"></div>
 <h1 align="center">Pixiviz</h1>
 
 ## 概述
