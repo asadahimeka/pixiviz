@@ -4,8 +4,8 @@
   },
   "rewrites": [
     {
-      "source": "/prks/acg/:match*",
-      "destination": "https://www.pixivs.cn/:match*"
+      "source": "/prks/now/:match*",
+      "destination": "https://now.pixiv.pics/:match*"
     },
     {
       "source": "/:path*",

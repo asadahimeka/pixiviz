@@ -125,7 +125,7 @@ export default {
         return
       }
       try {
-        const url = '/prks/acg/ajax/illust/discovery'
+        const url = '/prks/now/ajax/illust/discovery'
         const res = await this.axios.get(url, {
           baseURL: '/',
           params: {
