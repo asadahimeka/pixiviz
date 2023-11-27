@@ -15,7 +15,7 @@ importScripts("/js/workbox-v4.3.1/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "/js/workbox-v4.3.1"});
 
 importScripts(
-  "/js/precache-manifest.80298f169586208371131ec03d59a6ff.js"
+  "/js/precache-manifest.d8707cecb41956ceb229806ccf10a6f5.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "pixiviz"});
