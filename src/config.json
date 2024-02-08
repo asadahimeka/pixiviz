@@ -1,8 +1,8 @@
 {
-  "website_url": "https://pixiviz.kanata.ml",
+  "website_url": "https://z.pixiv.pics",
   "public_proxy": "i.pixiv.re",
-  "image_proxy_host": "pximg.cocomi.cf",
-  "download_proxy_host": "pximg.cocomi.cf",
+  "image_proxy_host": "pximg.cocomi.eu.org",
+  "download_proxy_host": "pximg.cocomi.eu.org",
   "remote_conf_url": "https://cfs.tigo.pwp.app/pixiviz-prod.json",
   "api_prefix": [
     "https://hibiapi.cocomi.eu.org/api/pixiv"
@@ -10,7 +10,7 @@
   "guide_url": "https://blog.pwp.space/article/Pixiviz%E9%A3%9F%E7%94%A8%E6%8C%87%E5%8D%97.md",
   "donate_url": "https://afdian.net/@backrunner",
   "landing_bg_id": 94067980,
-  "trust_host": ["pixiviz.kanata.ml"],
+  "trust_host": ["z.pixiv.pics"],
   "announcement_feed": "https://cfs.tigo.pwp.app/pixiviz-anno-prod.json",
   "afdian_manage_api": "https://afdian-manage.pwp.app",
   "show_guide": false,
