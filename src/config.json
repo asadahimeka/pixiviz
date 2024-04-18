@@ -1,11 +1,11 @@
 {
   "website_url": "https://z.pixiv.pics",
   "public_proxy": "i.pixiv.re",
-  "image_proxy_host": "i.pixiv.pics",
-  "download_proxy_host": "i.pixiv.pics",
+  "image_proxy_host": "pximg.cocomi.eu.org",
+  "download_proxy_host": "pximg.cocomi.eu.org",
   "remote_conf_url": "https://cfs.tigo.pwp.app/pixiviz-prod.json",
   "api_prefix": [
-    "https://hibiapi.pixiv.pics/api/pixiv"
+    "https://hibiapi.cocomi.eu.org/api/pixiv"
   ],
   "guide_url": "https://blog.pwp.space/article/Pixiviz%E9%A3%9F%E7%94%A8%E6%8C%87%E5%8D%97.md",
   "donate_url": "https://afdian.net/@backrunner",
